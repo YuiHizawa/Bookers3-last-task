@@ -1,28 +1,27 @@
 <h2>User info</h2>
-<table>
-	<tbody>
-		<tr>
-			<td><%= attachment_image_tag @user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %></td>
+<table class="table">		
+			<p><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %></p>
 		</tr>
+	<tbody>
 		<tr><td>name</td>
-			<td><%= @user.name %></td>
+			<td><%= user.name %></td>
 		</tr>
 		<tr>
 			<td>introduction</td>
-			<td><%= @user.introduction %></td>
-		</tr>
-		<tr>
-			<% if @user.id == current_user.id %>
-				<td>
-					<%= link_to "プロフィール編集", edit_user_path(@user) %>
-				</td>
-			<% else %>
-				<td>
-					<%= link_to "プロフィール編集", user_path(@user.id) %>
-				</td>
-			<% end %>
+			<td><%= user.introduction %></td>
 		</tr>
 	</tbody>
 </table>	
+		<% if user.id == current_user.id %>
+			<p>
+				<%= link_to "", edit_user_path(user), class: "btn btn-default glyphicon glyphicon-wrench btn-xs btn-block" %>
+			</p>
+		<% else %>
+			<p>
+				<%= link_to "", user_path(user.id), class: "btn btn-default glyphicon glyphicon-wrench btn-xs btn-block" %>
+			</p>
+		<% end %>
+		
+
 
 

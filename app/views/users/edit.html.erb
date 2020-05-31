@@ -1,44 +1,35 @@
-<div class="body-wrap">
-  <div id="st-container" class="st-container">
-    <div class="st-pusher">
-      <div class="st-content">
-        <div class="st-content-inner">      
-          <section class="slice slice-lg sct-color-1">
-              <div class="container">
-                  <div class="row">
-                      <div class="col-md-4 col-md-offset-4">
-                          <div class="form-user style-1 rounded has-shadow-1"> 
-                            <div class="form-header text-center">
-                                <h2 class="form-header-title">User info</h2>
-                            </div>
-                            <div class="form-body">
-                              <%= form_for(@user) do |f| %>
-                                <div class="form-group has-icon">
-                                    <label class="control-label sr-only" for="inputEmail">Name</label>
-                                    <%= f.text_field :name, autofocus: true, class:"form-control", id:"inputEmail", placeholder:""%>
-                                    <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
-                                </div>
-                                <div class="form-group has-icon">
-                                    
-                                    <label class="control-label sr-only" for="inputEmail">Image</label>
-                                    <%= f.attachment_field :profile_image, placeholder: "", class: "user-edit-form" %>
-                                </div>                                
-                                <div class="form-group has-icon">
-                                    <label class="control-label sr-only" for="inputEmail">Introduction</label>
-                                    <%= f.text_field :introduction, autofocus: true, class:"form-control", id:"inputEmail", placeholder:""%>
-                                    <span class="fa fa-user form-control-icon" aria-hidden="true"></span>
-                                </div>                      
-                                <%= f.submit "変更を保存", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-                            <% end %>
-                              <!-- ここにform_forを追加します -->
-                            </div>
-                          </div> 
-                      </div>
-                  </div>
-              </div>
-          </section>
+<div class=container>
+  <div class="row">
+    <div coass="col-lg-9">         
+    <h2>User info</h2>
+    <div>
+      <%= form_for(@user) do |f| %>
+      <% if f.object.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= f.object.errors.count %>件のerrorーが発生しました。</h2>
+          <ul>
+          <% f.object.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
         </div>
-      </div>
+      <% end %>
+
+        <div>
+            <label>Name</label>
+            <%= f.text_field :name, id:"inputEmail", placeholder:""%>
+        </div>
+        <div>                                    
+            <label>Image</label>
+            <%= f.attachment_field :profile_image, placeholder: "" %>
+        </div>                                
+        <div>
+            <label>Introduction</label>
+            <%= f.text_area :introduction, id:"inputEmail", placeholder:""%>
+        </div>                      
+        <%= f.submit "Update User", class:"btn btn-default btn-xs" %>
+    <% end %>
+    </div>
     </div>
   </div>
 </div>
