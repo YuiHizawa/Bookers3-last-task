@@ -25,6 +25,8 @@
                                 </div>                      
                                 <%= f.submit "Update Book", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
                             <% end %>
+                            <span><%= link_to "Show", book_path(@book) %></span>
+                            <span><%= link_to "Back", books_path %></span>
                               <!-- ここにform_forを追加します -->
                             </div>
                           </div> 

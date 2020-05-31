@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!
+	before_action :correct_user, only: [:edit]
 	
 	def index
 		@book = Book.new
@@ -22,6 +23,7 @@ class BooksController < ApplicationController
 	end
 
 	def new	
+
 	end
 
 	
@@ -47,6 +49,7 @@ class BooksController < ApplicationController
 	  		flash[:notice] = "successfully"
 	  		redirect_to book_path(@book.id)
 	  	else
+	  		flash[:notice] = "error"
 	  		render :edit
 	  	end
   	end
@@ -64,6 +67,13 @@ private
     def book_params
         params.require(:book).permit(:title, :body)
     end
+
+    def correct_user
+    book = Book.find(params[:id])
+    if current_user != book.user
+      redirect_to books_path
+    end
+  	end
 	
 end
 
